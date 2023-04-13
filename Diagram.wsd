@@ -1,0 +1,77 @@
+@startuml test
+
+class Usuarios {
+    -id : int
+    -nombre_de_usuario : str
+    -contrasaeña : password
+    -email : mail
+    -rol : roles
+}
+
+class Infantes {
+    -id : int
+    -nombre : str
+    -apellido : str
+    -DNI : str
+    -fecha_de_nacimiento : date
+    -genero : generos
+    -sala_codigo : salas
+    -turno : turnos
+    -profesional : usuarios
+    -fecha_de_ingreso : date
+    -tutor : tutores
+
+}
+
+class Salas {
+    -id : int
+    -codigo_sala : int
+} 
+
+class Tutores {
+    -id : int
+    -nombre : str
+    -apellido : str
+    -DNI : str
+    -fecha_de_nacimiento : date
+    -telefono : telefono_tutores
+}
+
+class Roles {
+    -id : int
+    -nombre : str
+    -descripcion : str
+}
+
+class Turnos {
+    -id : int
+    -nombre : str
+    -descripcion : str
+}
+
+class Generos {
+    -id : int
+    -nombre : str
+    -descripcion : str
+}
+
+class Emails_Usuarios {
+    -id : int
+    -email : str
+    
+}
+
+class Telefono_tutores {
+    -id : int
+    -telefono : str
+}
+
+Infantes --> Salas
+Infantes --> Generos
+Infantes --> Tutores
+Infantes --> Usuarios
+Infantes --> Turnos
+Tutores --> Telefono_tutores
+Usuarios --> Roles
+Usuarios --> Emails_Usuarios
+@enduml
