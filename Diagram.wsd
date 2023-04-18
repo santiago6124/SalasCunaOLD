@@ -6,13 +6,12 @@ class Infantes {
     -apellido : str
     -dni : str
     -fecha_de_nacimiento : date
-    -genero : Generos
-    -sala_codigo : Salas
-    -turno : Turnos
-    -profesional : usuarios
+    -id_genero : Generos
+    -id_sala : Salas
+    -id_turno : Turnos
+    -id_user : user
     -fecha_de_ingreso : date
-    -tutor : Tutores
-
+    -id_tutor : Tutores
 }
 
 class Salas {
@@ -20,6 +19,7 @@ class Salas {
     -capacidad_maxima : int
     -direccion : int
     -id_zona : Zonas
+    -id_turno : Turnos
 } 
 
 class Zonas {
@@ -63,4 +63,7 @@ Infantes --> Generos
 Infantes --> Tutores
 Infantes --> Turnos
 Tutores --> Telefono_tutores
+Salas --> Zonas
+Salas --> Desinfectar
+Salas --> Turnos
 @enduml
