@@ -37,12 +37,6 @@ class Tutores {
     -telefono : telefono_tutores
 }
 
-class Roles {
-    -id : int
-    -nombre : str
-    -descripcion : str
-}
-
 class Turnos {
     -id : int
     -nombre : str
@@ -53,12 +47,6 @@ class Generos {
     -id : int
     -nombre : str
     -descripcion : str
-}
-
-class Emails_Usuarios {
-    -id : int
-    -email : str
-    
 }
 
 class Telefono_tutores {
@@ -72,6 +60,4 @@ Infantes --> Tutores
 Infantes --> Usuarios
 Infantes --> Turnos
 Tutores --> Telefono_tutores
-Usuarios --> Roles
-Usuarios --> Emails_Usuarios
 @enduml
