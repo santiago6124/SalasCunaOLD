@@ -2,10 +2,42 @@ from django.db import models
 
 # Create your models here.
 
+import pandas as pd
+import numpy
+def migrar_data():
+    df = pd.read_csv("..\migrarData\data\CONCILIACIÓN PADRONES 2023 - INGRESO DE PADRONES.csv")
 
-# from . import migrar_data
+    columns = [key for key in df]
+    padron_columns = columns[0:6]
+    fechas_columns = columns[6:len(columns)]
 
+    for col in fechas_columns:
+        filtt = Fecha.objects.filter(fecha = col)
+        if len(list(filtt)) == 0:
+            Fecha.objects.create(
+                fecha = col
+            )
 
+    rango = len(df['C. DE SALA']) - 1
+    for num in range(rango): # cambiar rango por un valor menor para testear
+
+        filtt = Padron.objects.filter(CSala = df['C. DE SALA'][num])
+        if len(list(filtt)) == 0:
+            padron = Padron.objects.create(
+                CSala = df['C. DE SALA'][num],
+                sector = df['SECTOR'][num],
+                nombre_sala = df['NOMBRE DE SALA'][num],
+                entidad_municipal = df['ENTIDAD / MUNICIPALIDAD'][num],
+                TS_a_cargo = df['TS A CARGO'][num],
+            )
+
+            for col in fechas_columns:
+                valor = int(df[col][num]) if type(df[col][num]) == int else 0
+                Fecha_Padron.objects.create(
+                    padron_fk = padron,
+                    fecha_fk = Fecha.objects.get(fecha = col),
+                    valor = valor
+                )
 
 class Padron(models.Model):
     CSala = models.CharField(max_length=5)
@@ -32,42 +64,4 @@ class Fecha_Padron(models.Model):
         return f"{self.padron_fk} {self.fecha_fk} {self.valor} "
     
 
-import pandas as pd
-import numpy
-
-df = pd.read_csv("..\migrarData\data\CONCILIACIÓN PADRONES 2023 - INGRESO DE PADRONES.csv")
-
-columns = [key for key in df]
-
-fechas_columns = columns[6:len(columns)]
-padron_columns = columns[0:6]
-
-for col in fechas_columns:
-    gett = Fecha.objects.filter(fecha = col)
-    if len(list(gett)) == 0:
-        Fecha.objects.create(
-            fecha = col
-        )
-
-rango = len(df['C. DE SALA'])
-
-for num in range(3):
-
-    filtt = Padron.objects.filter(CSala = df['C. DE SALA'][num])
-
-    if len(list(filtt)) == 0:
-        padron = Padron.objects.create(
-            CSala = df['C. DE SALA'][num],
-            sector = df['SECTOR'][num],
-            nombre_sala = df['NOMBRE DE SALA'][num],
-            entidad_municipal = df['ENTIDAD / MUNICIPALIDAD'][num],
-            TS_a_cargo = df['TS A CARGO'][num],
-        )
-
-        for col in fechas_columns:
-            valor = int(df[col][num]) if str(df[col][num]) != 'nan' else 0
-            Fecha_Padron.objects.create(
-                padron_fk = padron,
-                fecha_fk = Fecha.objects.get(fecha = col),
-                valor = valor
-            )
+migrar_data()
