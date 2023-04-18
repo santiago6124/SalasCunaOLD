@@ -14,6 +14,14 @@ class Infantes {
     -id_tutor : Tutores
 }
 
+class Usuarios {
+    -id : int
+    -nombre_de_usuario : str
+    -contrasaeña : password
+    -email : mail
+    -rol : roles
+}
+
 class Salas {
     -codigo_sala : int
     -capacidad_maxima : int
@@ -33,7 +41,8 @@ class Tutores {
     -apellido : str
     -dni : str
     -fecha_de_nacimiento : date
-    -telefono : Telefono_tutores
+    -id_telefono : Telefono_tutores
+    -id_genero : Generos
 }
 
 class Turnos {
@@ -48,9 +57,20 @@ class Generos {
     -descripcion : str
 }
 
+class Roles {
+    -id : int
+    -nombre : str
+    -descripcion : str
+}
+
 class Telefono_tutores {
     -id : int
     -telefono : str
+}
+
+class Emails_Usuarios {
+    -id : int
+    -email : str
 }
 
 class Desinfectar {
@@ -58,12 +78,26 @@ class Desinfectar {
     -fecha : date
 }
 
+class Domicilio {
+    -id : int
+    -calle : str
+    -barrio : str
+    -localidad : str
+    -departamento : str
+}
+
 Infantes --> Salas
 Infantes --> Generos
 Infantes --> Tutores
 Infantes --> Turnos
+Infantes --> Usuarios
+Infantes --> Domicilio
 Tutores --> Telefono_tutores
+Usuarios --> Roles
+Usuarios --> Emails_Usuarios
 Salas --> Zonas
 Salas --> Desinfectar
 Salas --> Turnos
+Salas --> Domicilio
+Tutores --> Generos
 @enduml
