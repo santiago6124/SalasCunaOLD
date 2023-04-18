@@ -25,7 +25,7 @@ class Usuarios {
 class Salas {
     -codigo_sala : int
     -capacidad_maxima : int
-    -direccion : int
+    -id_direccion : Direccion
     -id_zona : Zonas
     -id_turno : Turnos
 } 
@@ -78,7 +78,7 @@ class Desinfectar {
     -fecha : date
 }
 
-class Domicilio {
+class Direccion {
     -id : int
     -calle : str
     -barrio : str
@@ -91,13 +91,13 @@ Infantes --> Generos
 Infantes --> Tutores
 Infantes --> Turnos
 Infantes --> Usuarios
-Infantes --> Domicilio
+Infantes --> Direccion
 Tutores --> Telefono_tutores
 Usuarios --> Roles
 Usuarios --> Emails_Usuarios
 Salas --> Zonas
 Salas --> Desinfectar
 Salas --> Turnos
-Salas --> Domicilio
+Salas --> Direccion
 Tutores --> Generos
 @enduml
