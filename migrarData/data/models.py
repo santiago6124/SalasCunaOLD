@@ -24,12 +24,12 @@ class Fecha(models.Model):
         return f"{self.fecha}"
 
 class Fecha_Padron(models.Model):
-    CSala = models.ForeignKey( Padron, on_delete=models.CASCADE )
-    Fecha = models.ForeignKey( Fecha, on_delete=models.CASCADE )
+    padron_fk = models.ForeignKey( Padron, on_delete=models.CASCADE )
+    fecha_fk = models.ForeignKey( Fecha, on_delete=models.CASCADE )
     valor = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.CSala} {self.Fecha} {self.valor} "
+        return f"{self.padron_fk} {self.fecha_fk} {self.valor} "
     
 
 import pandas as pd
@@ -67,7 +67,7 @@ for num in range(3):
         for col in fechas_columns:
             valor = int(df[col][num]) if str(df[col][num]) != 'nan' else 0
             Fecha_Padron.objects.create(
-                CSala = padron,
-                Fecha = Fecha.objects.get(fecha = col),
+                padron_fk = padron,
+                fecha_fk = Fecha.objects.get(fecha = col),
                 valor = valor
             )
