@@ -1,40 +1,39 @@
 @startuml test
 
-class Usuarios {
-    -id : int
-    -nombre_de_usuario : str
-    -contrasaeña : password
-    -email : mail
-    -rol : roles
-}
-
 class Infantes {
     -id : int
     -nombre : str
     -apellido : str
-    -DNI : str
+    -dni : str
     -fecha_de_nacimiento : date
-    -genero : generos
-    -sala_codigo : salas
-    -turno : turnos
+    -genero : Generos
+    -sala_codigo : Salas
+    -turno : Turnos
     -profesional : usuarios
     -fecha_de_ingreso : date
-    -tutor : tutores
+    -tutor : Tutores
 
 }
 
 class Salas {
-    -id : int
     -codigo_sala : int
+    -capacidad_maxima : int
+    -direccion : int
+    -id_zona : Zonas
 } 
+
+class Zonas {
+    -id : int
+    -nombre : str
+}
 
 class Tutores {
     -id : int
     -nombre : str
     -apellido : str
-    -DNI : str
+    -dni : str
     -fecha_de_nacimiento : date
-    -telefono : telefono_tutores
+    -telefono : Telefono_tutores
 }
 
 class Turnos {
@@ -54,10 +53,14 @@ class Telefono_tutores {
     -telefono : str
 }
 
+class Desinfectar {
+    -id : int
+    -fecha : date
+}
+
 Infantes --> Salas
 Infantes --> Generos
 Infantes --> Tutores
-Infantes --> Usuarios
 Infantes --> Turnos
 Tutores --> Telefono_tutores
 @enduml
