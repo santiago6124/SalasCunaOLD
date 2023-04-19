@@ -86,32 +86,32 @@ class Direccion {
     -altura : int
     -latitud : str
     -longitud : str
-    -id_barrio : Barrio
+    -id_barrio : Barrios
 }
 
-class Barrio {
+class Barrios {
     -id : int
     -nombre : str
-    -id_localidad : Localidad
+    -id_localidad : Localidades
 }
 
-class Localidad {
+class Localidades {
     -id : int
     -nombre : str
-    -id_departamento : Departamento
+    -id_departamento : Departamentos
 }
 
-class Departamento {
+class Departamentos {
     -id : int
     -nombre : int
 }
 
-class Padron {
+class Padrones {
     -id : int
 
 }
 
-Padron --> Infantes
+Padrones --> Infantes
 Infantes --> Salas
 Infantes --> Generos
 Infantes --> Tutores
@@ -126,7 +126,7 @@ Salas --> Desinfectar
 Salas --> Turnos
 Salas --> Direccion
 Tutores --> Generos
-Direccion --> Barrio
-Barrio --> Localidad
-Localidad --> Departamento
+Direccion --> Barrios
+Barrios --> Localidades
+Localidades --> Departamentos
 @enduml
