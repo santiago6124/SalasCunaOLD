@@ -12,6 +12,8 @@ class Infantes {
     -id_user : user
     -fecha_de_ingreso : date
     -id_tutor : Tutores
+    --
+    +generar_padron()
 }
 
 class Usuarios {
@@ -81,11 +83,35 @@ class Desinfectar {
 class Direccion {
     -id : int
     -calle : str
-    -barrio : str
-    -localidad : str
-    -departamento : str
+    -altura : int
+    -latitud : str
+    -longitud : str
+    -id_barrio : Barrio
 }
 
+class Barrio {
+    -id : int
+    -nombre : str
+    -id_localidad : Localidad
+}
+
+class Localidad {
+    -id : int
+    -nombre : str
+    -id_departamento : Departamento
+}
+
+class Departamento {
+    -id : int
+    -nombre : int
+}
+
+class Padron {
+    -id : int
+
+}
+
+Padron --> Infantes
 Infantes --> Salas
 Infantes --> Generos
 Infantes --> Tutores
@@ -100,4 +126,7 @@ Salas --> Desinfectar
 Salas --> Turnos
 Salas --> Direccion
 Tutores --> Generos
+Direccion --> Barrio
+Barrio --> Localidad
+Localidad --> Departamento
 @enduml
